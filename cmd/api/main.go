@@ -13,6 +13,7 @@ func main() {
 
 	mux.HandleFunc("GET /v1/{key}", keyValueGetHandler)
 	mux.HandleFunc("PUT /v1/{key}", keyValuePutHandler)
+	mux.HandleFunc("DELETE /v1/{key}", keyValueDeleteHandler)
 
 	srv := http.Server{
 		Handler:      mux,

@@ -46,3 +46,21 @@ func keyValueGetHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+
+func keyValueDeleteHandler(w http.ResponseWriter, r *http.Request) {
+
+	key := r.PathValue("key")
+
+	err := Delete(key)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	_, err = w.Write([]byte("Deleted successfully"))
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+}
