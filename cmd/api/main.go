@@ -7,14 +7,12 @@ import (
 	"time"
 )
 
-func helloGoHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello net/http!\n"))
-}
 func main() {
 
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("GET /", helloGoHandler)
+	mux.HandleFunc("GET /v1/{key}", keyValueGetHandler)
+	mux.HandleFunc("PUT /v1/{key}", keyValuePutHandler)
 
 	srv := http.Server{
 		Handler:      mux,
